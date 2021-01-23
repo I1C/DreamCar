@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { API_BASE_URL } from '../constants/apiConstants';
-
+import { CustomEventsService } from '../services/custom-events.service';
 /* eslint-disable @typescript-eslint/no-empty-function */
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private customEventsService: CustomEventsService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
       .then( (response) => {
         console.log(response);
         if (response.status === 200) {
+          this.sendEvent();
           localStorage.setItem('token', response.data);
+          localStorage.setItem('company_logo', '../../assets/company_name.png' );
           this.router.navigate(['/home']);
           console.log('A mers!');
         } else if (response.status === 204) {
@@ -55,6 +57,17 @@ export class LoginComponent implements OnInit {
         console.log(error);
       });
   }
+
+  sendEvent(): void {
+    document.dispatchEvent(
+      this.customEventsService.createCustomEvent(
+        'customEvent',
+        { userImage: 'companyImage', userName: 'companyName', isLoggedIn: true}
+      )
+    );
+  }
+
 }
+
 
 

@@ -44,3 +44,8 @@ Select * From dreamcar.occupations;
 Select * From dreamcar.bidders;
 
 Select * From dreamcar.owners;
+
+ALTER TABLE database1.users ADD LName varchar(255);
+
+SELECT * FROM database1.users;
+SELECT * FROM database1.occupation;

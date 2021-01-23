@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
     document.dispatchEvent(
       this.customEventsService.createCustomEvent(
         'customEvent',
-        { userImage: 'companyImage', userName: 'companyName', isLoggedIn: true}
+        { userImage: 'companyImage', userName: 'companyName', isLoggedIn: true, userImageLink: '../../assets/company_name.png' }
       )
     );
   }

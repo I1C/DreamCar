@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +43,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     MatListModule,
     MatToolbarModule,
     HttpClientModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

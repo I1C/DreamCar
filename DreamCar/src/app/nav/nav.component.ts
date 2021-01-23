@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CustomEventsService } from '../services/custom-events.service';
 
 
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -30,6 +31,7 @@ export class NavComponent implements OnInit {
         this.userName = JSON.parse(String(result)).userName;
         this.userImage = JSON.parse(String(result)).userImage;
         this.isLoggedIn = JSON.parse(String(result)).isLoggedIn;
+        this.userImageLink = JSON.parse(String(result)).userImageLink;
         if (localStorage.getItem('token')) {
           this.isLoggedIn = true;
           this.userImageLink = localStorage.getItem('company_logo');

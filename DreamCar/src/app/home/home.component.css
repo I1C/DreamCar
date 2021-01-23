@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+}
+.btn {
+  margin: 5px;
+}
+.column {
+  justify-content: center;
+}
+
+.title {
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.participate {
+  justify-content: center;
+  margin: 5px;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+}
+
+.header-image {
+  background-size: cover;
+  height: 100px;
+  width: 150px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}

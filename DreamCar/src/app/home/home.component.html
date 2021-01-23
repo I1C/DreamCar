@@ -1,1 +1,64 @@
-<p>home works!</p>
+
+<mat-card>
+  <mat-card-header>
+    <div>
+        <img class="header-image" [src]="userImageLink">
+    </div>
+    <div>
+      <mat-card-title class="title">DreamCar Auction</mat-card-title>
+    </div>
+</mat-card-header>
+<mat-card-header class="participate">
+  <div class="participate">
+    <button mat-flat-button color="primary" >Participate</button>
+  </div>
+</mat-card-header>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef class="column"> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.position}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef class="column"> Company Name </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.name}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef class="column"> Occupation </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.weight}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="symbol">
+    <mat-header-cell *matHeaderCellDef class="column"> Pieces </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.symbol}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef class="column"> Price </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.price}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef class="column"> Actions </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column" >
+      <div class= "btn">
+        <button mat-flat-button color="primary" class="button">Edit</button>
+    </div>
+    <div class= "btn">
+      <button mat-flat-button color="warn" class="button">Delete</button>
+  </div>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+</mat-card>

@@ -44,14 +44,6 @@ exports.login = async (req, res) => {
             {
               expiresIn: process.env.JWT_EXPIRES_IN,
             }
-            // (err, token) => {
-            //   if (err) throw err;
-            //   res.json({
-            //     token,
-            //     email: email,
-            //     password: password,
-            //   });
-            // }
           );
 
           console.log("The token is: " + token);
@@ -78,11 +70,6 @@ exports.login = async (req, res) => {
 
 exports.register = (req, res) => {
   console.log(req.body);
-
-  // const name = req.body.name;
-  // const email = req.body.email;
-  // const password = req.body.password;
-  // const passwordConfirm = req.body.passwordConfirm;
 
   const { name, email, password, passwordConfirm } = req.body;
   console.log(req.body);

@@ -20,7 +20,7 @@ const db = mysql.createConnection({
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:4200"],
     credentials: true,
   })
 );
@@ -28,7 +28,7 @@ app.use(
 // Add headers
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 
   // Request methods you wish to allow
   res.setHeader(
@@ -234,8 +234,8 @@ app.put("/updateByID", function (req, res) {
   );
 });
 
-// app.use("/", require("./routes/pages"));
-// app.use("/auth", require("./routes/auth"));
+
+app.use("/auth", require("./routes/auth"));
 
 app.listen(3033, () => {
   console.log("Server started on Port 3033");

@@ -1,3 +1,5 @@
 /DreamCar/Backend/.env
 /DreamCar/node_modules
 /DreamCar/Backend/node_modules
+node_modules/
+**/node_modules/

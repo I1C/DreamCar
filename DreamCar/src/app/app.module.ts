@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ParticipateComponent } from './participate/participate.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    ParticipateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ParticipateComponent } from '../participate/participate.component';
-import axios from 'axios';
-import { API_BASE_URL } from '../constants/apiConstants';
-import { BidiModule } from '@angular/cdk/bidi';
-import { __await } from 'tslib';
-import { Observable } from 'rxjs';
 import { BiddersService } from '../services/bidders.service';
+import { CustomEventsService } from '../services/custom-events.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,20 +13,29 @@ export class HomeComponent implements OnInit {
   userImageLink = '../../assets/car_logo.jpeg';
 
   displayedColumns: string[] = ['ID', 'CompanyName', 'OccID', 'Price', 'actions'];
-  dataSource = [];
+  dataSource: any = [];
 
-  constructor(public dialog: MatDialog, private bid: BiddersService) { }
+  constructor(public dialog: MatDialog, private bid: BiddersService, private customEventsService: CustomEventsService) { }
 
   ngOnInit(): void {
-     this.bid.getTable().subscribe(
-       (data: any) => {
-         this.dataSource = data;
-         console.log(this.dataSource);
-       }
-     );
+    this.getTable();
+    this.customEventsService.receiveEventData('verifyEvent').subscribe(
+      (result: any) => {
+        this.dataSource = JSON.parse(String(result)).dataSource;
+      }
+    );
   }
 
   openDialog(): void {
     this.dialog.open(ParticipateComponent);
+  }
+
+  getTable(): any{
+    this.bid.getTable().subscribe(
+      (data: any) => {
+        this.dataSource = data;
+        console.log(this.dataSource);
+      }
+    );
   }
 }

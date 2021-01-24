@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 import { API_BASE_URL } from '../constants/apiConstants';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomEventsService } from '../services/custom-events.service';
+import { BiddersService } from '../services/bidders.service';
 
 interface Occupation {
   value: string;
@@ -21,7 +23,7 @@ export class ParticipateComponent implements OnInit {
   selectedValue = '';
   hide: unknown;
   payload = {};
-  registerForm: FormGroup = new FormGroup({});
+  participationForm: FormGroup = new FormGroup({});
 
   occupations: Occupation[] = [
     {value: '1', viewValue: 'tire'},
@@ -33,37 +35,33 @@ export class ParticipateComponent implements OnInit {
     {value: '7', viewValue: 'windshield'},
   ];
 
+  dataSource: any = [];
 
-  constructor(private fb: FormBuilder, private checkP: CheckPasswordService, private router: Router, public dialog: MatDialog) { }
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private customEventsService: CustomEventsService, private bid: BiddersService) { }
 
   ngOnInit(): void {
-    this.createRegistrationForm();
+    this.createParticipationForm();
   }
 
-  createRegistrationForm(): void {
-    this.registerForm = this.fb.group(
+  createParticipationForm(): void {
+    this.participationForm = this.fb.group(
       {
         Name: ['', Validators.required],
         Email: ['', [Validators.required, Validators.email]],
         Price: ['', Validators.required],
         Occupation: ['', Validators.required],
-      },
-      {
-        validator: this.checkP.passwordMatchValidator(
-          'password',
-          'passwordConfirm'
-        )
       }
     );
   }
 
-  onRegister(): void {
-    this.payload = Object.assign(this.payload, this.registerForm.value);
+  onParticipation(): void {
+    this.payload = Object.assign(this.payload, this.participationForm.value);
     axios.post(
       API_BASE_URL + 'addUser', this.payload).then(
           (response) => {
             if (response.status === 200) {
-            console.log('Inregistrare reusita!' + response);
             this.closeDialog();
             }else if (response.status === 204) {
               console.log('Eroarea 1');
@@ -74,11 +72,30 @@ export class ParticipateComponent implements OnInit {
       ).catch( (error) => {
         console.log(error);
       });
-    this.registerForm.reset();
+    this.getTable();
+    this.sendEvent();
   }
 
   closeDialog(): void {
     this.dialog.closeAll();
+  }
+
+  getTable(): any{
+    this.bid.getTable().subscribe(
+      (data: any) => {
+        this.dataSource = data;
+        console.log(this.dataSource);
+      }
+    );
+  }
+
+  sendEvent(): void {
+    document.dispatchEvent(
+      this.customEventsService.createCustomEvent(
+        'verifyEvent',
+        this.dataSource
+      )
+    );
   }
 
 }

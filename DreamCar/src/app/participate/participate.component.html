@@ -4,12 +4,12 @@
           <div class="header">
               <h2>Participate</h2>
           </div>
-          <form (ngSubmit)="onRegister()" name="loginForm" [formGroup]="registerForm">
+          <form (ngSubmit)="onParticipation()" name="loginForm" [formGroup]="participationForm">
               <div class="name-input">
                   <mat-form-field class="full-width">
                       <mat-label>Company Name</mat-label>
                       <input formControlName="Name" matInput required/>
-                      <mat-error *ngIf="registerForm.get('name')">
+                      <mat-error *ngIf="participationForm.get('Name')">
                           Required name
                       </mat-error>
                   </mat-form-field>
@@ -18,7 +18,7 @@
                   <mat-form-field class="full-width">
                       <mat-label>Email</mat-label>
                       <input formControlName="Email" matInput required/>
-                      <mat-error *ngIf="registerForm.get('email')">
+                      <mat-error *ngIf="participationForm.get('Email')">
                           Required email address
                       </mat-error>
                   </mat-form-field>
@@ -31,6 +31,9 @@
                 {{occ.viewValue}}
               </mat-option>
               </mat-select>
+              <mat-error *ngIf="participationForm.get('Occupation')">
+                Required Occupation
+            </mat-error>
               </mat-form-field>
               <!-- <p> Selected food: {{selectedValue}} </p> -->
             </div>
@@ -38,8 +41,8 @@
               <mat-form-field class="full-width">
                   <mat-label>Price/Lot</mat-label>
                   <input formControlName="Price" matInput required/>
-                  <mat-error *ngIf="registerForm.get('name')">
-                      Required name
+                  <mat-error *ngIf="participationForm.get('Price')">
+                      Required Price
                   </mat-error>
               </mat-form-field>
             </div>

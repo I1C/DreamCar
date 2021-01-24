@@ -16,32 +16,26 @@
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef class="column"> No. </mat-header-cell>
-    <mat-cell *matCellDef="let element" class="column"> {{element.position}} </mat-cell>
+  <ng-container matColumnDef="ID">
+    <mat-header-cell *matHeaderCellDef class="column"> Bidders </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.ID}} </mat-cell>
   </ng-container>
 
 
-  <ng-container matColumnDef="name">
+  <ng-container matColumnDef="CompanyName">
     <mat-header-cell *matHeaderCellDef class="column"> Company Name </mat-header-cell>
-    <mat-cell *matCellDef="let element" class="column"> {{element.name}} </mat-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.CompanyName}} </mat-cell>
   </ng-container>
 
 
-  <ng-container matColumnDef="weight">
+  <ng-container matColumnDef="OccID">
     <mat-header-cell *matHeaderCellDef class="column"> Occupation </mat-header-cell>
-    <mat-cell *matCellDef="let element" class="column"> {{element.weight}} </mat-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.occupationID}} </mat-cell>
   </ng-container>
 
-
-  <ng-container matColumnDef="symbol">
-    <mat-header-cell *matHeaderCellDef class="column"> Pieces </mat-header-cell>
-    <mat-cell *matCellDef="let element" class="column"> {{element.symbol}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef class="column"> Price </mat-header-cell>
-    <mat-cell *matCellDef="let element" class="column"> {{element.price}} </mat-cell>
+  <ng-container matColumnDef="Price">
+    <mat-header-cell *matHeaderCellDef class="column"> Price/Lot </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="column"> {{element.Price}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">

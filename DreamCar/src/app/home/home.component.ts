@@ -1,27 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ParticipateComponent } from '../participate/participate.component';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
+import axios from 'axios';
+import { API_BASE_URL } from '../constants/apiConstants';
+import { BidiModule } from '@angular/cdk/bidi';
+import { __await } from 'tslib';
+import { Observable } from 'rxjs';
+import { BiddersService } from '../services/bidders.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,12 +16,18 @@ export class HomeComponent implements OnInit {
 
   userImageLink = '../../assets/car_logo.jpeg';
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'price', 'actions'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['ID', 'CompanyName', 'OccID', 'Price', 'actions'];
+  dataSource = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private bid: BiddersService) { }
 
   ngOnInit(): void {
+     this.bid.getTable().subscribe(
+       (data: any) => {
+         this.dataSource = data;
+         console.log(this.dataSource);
+       }
+     );
   }
 
   openDialog(): void {

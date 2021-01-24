@@ -93,8 +93,8 @@ app.get("/getAll", function (req, res) {
 app.post("/addUser", function (req, res) {
   res.send(req.body);
   db.query(
-    "INSERT INTO users (FName, LName, OccID) values (?, ?, ?)",
-    [req.body.FName, req.body.LName, req.body.OccID],
+    "INSERT INTO bidders (Occupation, Name, Price, Email) values (?, ?, ?, ?)",
+    [req.body.Occupation, req.body.Name, req.body.Price, req.body.Email],
     function (err, result1) {
       if (err) throw err;
       console.log("1 record inserted");
@@ -145,11 +145,12 @@ app.get("/getByJoin/:ID", auth, function (req, res) {
   );
 });
 
+// get Table - good
 app.get("/getByJoin", function (req, res) {
   let id = req.params.ID;
 
   db.query(
-    "SELECT users.ID AS ID, users.FName AS FirstName, users.LName AS LastName, users.occID as OccID, occupations.Occupation AS occupationID FROM users JOIN occupations ON users.OccID = occupations.ID ",
+    "SELECT bidders.BidderID AS ID, bidders.Name AS CompanyName, bidders.Email AS Email, bidders.Price AS Price, bidders.Occupation as OccID, occupations.Occupation AS occupationID FROM bidders JOIN occupations ON bidders.Occupation = occupations.ID ",
     function (err, result5) {
       if (err) throw err;
       console.log(result5);

@@ -8,7 +8,23 @@ table {
   justify-content: center;
 }
 
+.date {
+  margin-left: 33px;
+}
+
+.winner-text {
+  margin-top: 12px;
+  color: green;
+  font-weight: bold;
+}
+
 .title {
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.title2 {
+  color: red;
   justify-content: center;
   margin-top: 45px;
 }

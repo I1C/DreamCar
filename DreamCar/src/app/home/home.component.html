@@ -7,14 +7,17 @@
     <div>
       <mat-card-title class="title">DreamCar Auction</mat-card-title>
     </div>
+    <div class="date">
+      <mat-card-title class="title2">Ends on: {{count}}</mat-card-title>
+    </div>
 </mat-card-header>
-<mat-card-header class="participate">
+<mat-card-header *ngIf="progress" class="participate">
   <div class="participate">
     <button mat-flat-button color="primary" (click)="openDialog()" >Participate</button>
   </div>
 </mat-card-header>
 
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-table *ngIf="progress" [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="ID">
     <mat-header-cell *matHeaderCellDef class="column"> Bidders </mat-header-cell>
@@ -50,9 +53,45 @@
     </mat-cell>
   </ng-container>
 
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-
 </mat-card>
+<mat-card >
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="tire">Suspensions-winner: {{winner1}} with {{id1}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="suspensions">Suspensions-winner: {{winner2}} with {{id2}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="turbocharges">Turbocharges-winner: {{winner3}} with {{id3}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="exhaustPipe">ExhaustPipe-winner: {{winner4}} with {{id4}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="brakePads">BrakePads-winner: {{winner5}} with {{id5}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="rearviewMirrors">RearviewMirrors-winner: {{winner6}} with {{id6}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+  <mat-card-header class="participate">
+    <div class="column">
+      <h3 class="winner-text" *ngIf="windshield">Windshield-winner: {{winner7}} with {{id7}} $/Lot!</h3>
+    </div>
+  </mat-card-header>
+</mat-card>
+

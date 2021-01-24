@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ParticipateComponent } from './participate/participate.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ParticipateComponent } from './participate/participate.component';
     HomeComponent,
     RegisterComponent,
     NavComponent,
-    ParticipateComponent
+    ParticipateComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

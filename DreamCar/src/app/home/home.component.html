@@ -42,10 +42,10 @@
     <mat-header-cell *matHeaderCellDef class="column"> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element" class="column" >
       <div class= "btn">
-        <button mat-flat-button color="primary" class="button">Edit</button>
+        <button mat-flat-button color="primary" class="button" (click)="openEdit(element.ID, element.CompanyName, element.OccID, element.Price, element.Email)" >Edit</button>
     </div>
     <div class= "btn">
-      <button mat-flat-button color="warn" class="button">Delete</button>
+      <button mat-flat-button color="warn" class="button" (click)="deleteBidder(element.ID)">Delete</button>
   </div>
     </mat-cell>
   </ng-container>

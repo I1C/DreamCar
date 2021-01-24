@@ -122,7 +122,7 @@ app.get("/getByID/:ID", function (req, res) {
 app.delete("/deleteByID/:ID", function (req, res) {
   // res.send(req.params.ID);
   let id = req.params.ID;
-  db.query("DELETE FROM users WHERE ID = " + id, function (err, result2) {
+  db.query("DELETE FROM bidders WHERE BidderID = " + id, function (err, result2) {
     if (err) throw err;
     console.log(result2);
     res.send(result2 + req.params.ID);
@@ -193,40 +193,20 @@ app.put("/updateTable", function (req, res) {
 });
 
 app.put("/updateByID", function (req, res) {
-  // console.log("____========>>>>>> ID: " + req.body.ID);
-  // console.log("____========>>>>>> FName: " + req.body.FName);
-  // console.log("____========>>>>>> LName: " + req.body.LName);
-  // console.log("____========>>>>>> Occupations: " + req.body.Occupation);
-  // console.log("____========>>>>>> OccID: " + req.body.OccID);
-  // res.send(req.body);
-  // db.query(
-  //   // "UPDATE Occupation SET FName = ?, LName = ?, Occupation = ? WHERE OccupationID = ?",
-  //   "UPDATE users SET users.FName = FirstName, users.LName = LastName, occupations.Occupation = occupationID FROM users JOIN occupations ON users.OccID = occupations.ID WHERE users.ID = ID ",
-  //   [
-  //     req.body.ID,
-  //     req.body.FirstName,
-  //     req.body.LastName,
-  //     req.body.Occupation,
-  //     // req.body.OccupationID,
-  //   ],
-  //   function (err, result4) {
-  //     if (err) throw err;
-  //     console.log(result4.affectedRows + " record(s) updated");
-  //     res.send(result4);
-  //   }
-  // );
 
   db.query(
-    "UPDATE users SET FName = '" +
-      req.body.FName +
-      "', LName = '" +
-      req.body.LName +
-      "', OccID = '" +
-      req.body.OccID +
-      "' WHERE ID = '" +
+    "UPDATE bidders SET Name = '" +
+      req.body.Name +
+      "', Email = '" +
+      req.body.Email +
+      "', Price = '" +
+      req.body.Price +
+      "', Occupation = '" +
+      req.body.Occupation +
+      "' WHERE BidderID = '" +
       req.body.ID +
       "'",
-    [req.body.FName, req.body.LName, req.body.ID, req.body.OccID],
+    [req.body.Name, req.body.Email, req.body.Price, req.body.ID, req.body.Occupation],
     function (err, result4) {
       if (err) throw err;
       console.log(result4.affectedRows + " record(s) updated");

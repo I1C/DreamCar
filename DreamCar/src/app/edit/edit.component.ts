@@ -63,7 +63,8 @@ export class EditComponent implements OnInit {
     this.OccID = localStorage.getItem('OccID');
     this.Price = localStorage.getItem('Price');
     this.Email = localStorage.getItem('Email');
-    console.log('ID: ' + this.ID + ', CompanyName: ' + this.CompanyName + ', OccupationID: ' + this.OccID + ', Price: ' + this.Price + ', Email: ' + this.Email);
+    // tslint:disable-next-line:max-line-length
+    // console.log('ID: ' + this.ID + ', CompanyName: ' + this.CompanyName + ', OccupationID: ' + this.OccID + ', Price: ' + this.Price + ', Email: ' + this.Email);
   }
 
 
@@ -110,7 +111,6 @@ export class EditComponent implements OnInit {
     this.bid.getTable().subscribe(
       (data: any) => {
         this.dataSource = data;
-        console.log(this.dataSource);
       }
     );
   }

@@ -84,7 +84,6 @@ export class ParticipateComponent implements OnInit {
     this.bid.getTable().subscribe(
       (data: any) => {
         this.dataSource = data;
-        console.log(this.dataSource);
       }
     );
   }

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', response.data);
           localStorage.setItem('company_logo', '../../assets/company_name.png' );
           this.router.navigate(['/home']);
-          console.log('A mers!');
         } else if (response.status === 204) {
           console.log('Eroarea 1');
         } else {

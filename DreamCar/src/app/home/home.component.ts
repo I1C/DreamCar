@@ -106,11 +106,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  setMin1(): void {
-    console.log('A intrat!!!!');
-    console.log(this.dataSource);
-  }
-
   openDialog(): void {
     this.dialog.open(ParticipateComponent);
   }
@@ -140,7 +135,6 @@ export class HomeComponent implements OnInit {
     this.bid.getTable().subscribe(
       (data: any) => {
         this.dataSource = data;
-        console.log(this.dataSource);
         for (const i of this.dataSource){
             if (this.distance2 === 0){
               this.count = 'Expired';
@@ -496,11 +490,9 @@ export class HomeComponent implements OnInit {
         }
       }
     );
-    this.setMin1();
   }
 
   deleteBidder(ID: any): void{
-    console.log(ID);
     axios.delete(API_BASE_URL + 'deleteByID/' + ID, {
       data: {
         ID

@@ -82,14 +82,6 @@ app.use(
   })
 );
 
-// View table
-app.get("/getAll", function (req, res) {
-  db.query("SELECT * FROM database1.occupation;", function (err, result) {
-    if (err) throw err;
-    console.log(result);
-    res.send(result);
-  });
-});
 
 // Add table
 app.post("/addUser", function (req, res) {
@@ -107,7 +99,6 @@ app.post("/addUser", function (req, res) {
 });
 
 // Get by ID - prin parametru
-
 app.get("/getByID/:ID", function (req, res) {
   let id = req.params.ID;
   db.query("SELECT * FROM Occupation WHERE OccupationID = " + id, function (
@@ -131,23 +122,8 @@ app.delete("/deleteByID/:ID", function (req, res) {
   });
 });
 
-// Get by ID - JOIN
 
-app.get("/getByJoin/:ID", auth, function (req, res) {
-  let id = req.params.ID;
-
-  db.query(
-    "SELECT users.ID AS ID, users.FName AS FirstName, users.LName AS LastName, occupations.Occupation AS occupationID FROM users JOIN occupations ON users.OccID = occupationID.ID where users.OccID=" +
-      id,
-    function (err, result5) {
-      if (err) throw err;
-      console.log(result5);
-      res.send(result5);
-    }
-  );
-});
-
-// get Table - good
+// get Table
 app.get("/getByJoin", function (req, res) {
   let id = req.params.ID;
 
@@ -176,24 +152,8 @@ app.delete("/deleteRows", function (req, res) {
   });
 });
 
-// Update table
-app.put("/updateTable", function (req, res) {
-  db.query(
-    "UPDATE Occupation SET FName = ?, LName = ?, Occupation = ? WHERE OccupationID = ?",
-    [
-      req.body.FName,
-      req.body.LName,
-      req.body.Occupation,
-      req.body.OccupationID,
-    ],
-    function (err, result4) {
-      if (err) throw err;
-      console.log(result4.affectedRows + " record(s) updated");
-      res.send(result4);
-    }
-  );
-});
 
+// Update user
 app.put("/updateByID", function (req, res) {
 
   db.query(
@@ -216,6 +176,8 @@ app.put("/updateByID", function (req, res) {
     }
   );
 });
+
+// Send email
 
 app.post("/sendEmail", (req, res) => {
   console.log("request came...");
@@ -245,8 +207,8 @@ async function sendEmail(user, callback) {
     to: user.Email, // list of receivers
     subject: " Congratulations! You are the winner of DreamCarAuction! 😎", // Subject line
     html: `<h1>Hi ${user.CompanyName}</h1><br>
-    <h4>Thanks for joining us!</h4><br>
-    <h3>${user.Message}</h3>`
+    <h4>Thanks for joining us! 😎</h4><br>
+    <h3>🎉🎉🎉 ${user.Message} 🎉🎉🎉</h3>`
   };
 
   // send mail with defined transport object

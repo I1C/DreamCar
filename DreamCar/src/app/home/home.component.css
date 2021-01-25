@@ -4,6 +4,14 @@ table {
 .btn {
   margin: 5px;
 }
+
+.buttons {
+  width: 100%;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
 .column {
   justify-content: center;
 }
@@ -15,6 +23,7 @@ table {
 .winner-text {
   margin-top: 12px;
   color: green;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -29,7 +38,34 @@ table {
   margin-top: 45px;
 }
 
+.title22 {
+  color: red;
+  justify-content: center;
+  margin-bottom: 45px;
+}
+
+.title3 {
+  color: green;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.title33 {
+  color: green;
+  font-weight: bold;
+  justify-content: center;
+  margin-bottom: 33px;
+}
+
 .participate {
+  justify-content: center;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.participate1 {
+  margin-top: 33px;
   justify-content: center;
   margin-bottom: 12px;
   align-items: center;

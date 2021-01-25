@@ -3,9 +3,9 @@ CREATE DATABASE dreamcar;
 use dreamcar;
 
 create table dreamcar.Bidders(
-BidderID int auto_increment primary key,
+BidderID int NOT NULL auto_increment primary key,
 Name varchar (255),
-Pieces int,
+Email varchar (255),
 Price int,
 Occupation varchar (255)
 );
@@ -24,11 +24,12 @@ Occupation varchar (255)
 
 ALTER TABLE bidders ADD Name varchar(255);
 ALTER TABLE bidders ADD Piece int;
+ALTER TABLE bidders ADD Email varchar(255);
 ALTER TABLE bidders ADD Price int;
 ALTER TABLE bidders CHANGE Piece Pieces int;
 ALTER TABLE bidders CHANGE OccupationID BidderID varchar(255);
 
-alter table bidders drop column Fname;
+alter table bidders drop column BidderID;
 alter table bidders drop column Lname;
 
 insert into occupations (Occupation) value ("tire");
@@ -49,3 +50,5 @@ ALTER TABLE database1.users ADD LName varchar(255);
 
 SELECT * FROM database1.users;
 SELECT * FROM database1.occupation;
+
+DROP TABLE bidders;

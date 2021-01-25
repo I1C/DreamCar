@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 
 const auth = require("./middleware/middleware");
 
@@ -18,6 +19,7 @@ const db = mysql.createConnection({
 });
 
 const cors = require("cors");
+const { userInfo } = require("os");
 app.use(
   cors({
     origin: ["http://localhost:4200"],
@@ -214,6 +216,44 @@ app.put("/updateByID", function (req, res) {
     }
   );
 });
+
+app.post("/sendEmail", (req, res) => {
+  console.log("request came...");
+  // let Email = req.body;
+  // let CompanyName = req.body;
+  let user = req.body;
+  sendEmail(user, info =>{
+    console.log(`The mail has been sent and the message is ${info.messageId}`);
+    res.send(info);
+  });
+});
+
+async function sendEmail(user, callback) {
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
+    }
+  });
+
+  let mailOptions = {
+    from: 'DreamCarAuction', // sender address
+    to: user.Email, // list of receivers
+    subject: " Congratulations! You are the winner of DreamCarAuction! 😎", // Subject line
+    html: `<h1>Hi ${user.CompanyName}</h1><br>
+    <h4>Thanks for joining us!</h4><br>
+    <h3>${user.Message}</h3>`
+  };
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}
 
 
 app.use("/auth", require("./routes/auth"));

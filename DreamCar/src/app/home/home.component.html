@@ -21,7 +21,7 @@
 <mat-table *ngIf="progress" [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="ID">
-    <mat-header-cell *matHeaderCellDef class="column"> Bidders </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="column"> Unique Bidder ID </mat-header-cell>
     <mat-cell *matCellDef="let element" class="column"> {{element.ID}} </mat-cell>
   </ng-container>
 
@@ -111,7 +111,7 @@
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="ID">
-      <mat-header-cell *matHeaderCellDef class="column"> Bidders </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef class="column"> Unique Bidder ID </mat-header-cell>
       <mat-cell *matCellDef="let element" class="column"> {{element.ID}} </mat-cell>
     </ng-container>
 
